@@ -6,8 +6,8 @@ class Contact(models.Model):
     email = models.CharField(max_length=60)
     dob = models.DateField()
 
-class Mail(models.Model):
-    date_recieved = models.DateTimeField()
+class Email(models.Model):
+    date_received = models.DateTimeField()
     sender = models.CharField(max_length=50)
     subject = models.CharField(max_length=255)
     content = models.TextField()

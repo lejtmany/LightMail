@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>
-        {% block content%}
-
-        {%endblock content %}
-    </title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'Mail/base.html' %}
+{% block left_bar %}
+    <div class="jumbotron">left bar</div>
+{% endblock %}
+{% block main_content %}
+<div class="jumbotron">main content</div>
+{% load mail_extras %}
+{% inbox %}
+{% endblock %}
