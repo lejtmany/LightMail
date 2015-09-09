@@ -1,0 +1,9 @@
+<ul class="list-group">
+    {% for email in emails %}
+    <li class="list-group-item">
+        <a href="{% url 'mail:email_detail' email.id %}">
+            {{email.sender}} <b>{{email.subject}}</b> -- {{email.content |truncatechars:15 }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>

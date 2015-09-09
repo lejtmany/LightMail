@@ -1,4 +1,9 @@
-{% for name in contacts.names.all %}
-    <tr class="{% cycle 'row1' 'row2' %}">
-    </tr>
-{% endfor %}
+<h3>Contacts</h3>
+<ul class="list-group">
+    {% for contact in contacts %}
+    <li class="list-group-item">
+        {{ contact.first_name }} {{contact.last_name }}<br>
+        {{ contact.email }}
+    </li>
+    {% endfor %}
+</ul>

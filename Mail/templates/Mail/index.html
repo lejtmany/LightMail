@@ -1,9 +1,9 @@
 {% extends 'Mail/base.html' %}
-{% block left_bar %}
-    <div class="jumbotron">left bar</div>
-{% endblock %}
-{% block main_content %}
-<div class="jumbotron">main content</div>
 {% load mail_extras %}
-{% inbox %}
-{% endblock %}
+    {% block left_bar %}
+        {% contacts_list %}
+    {% endblock %}
+    {% block main_content %}
+        <a type="button" class="btn btn-primary" href="{% url 'mail:send_email'%}">Send Email</a>
+        {% emails_list %}
+    {% endblock %}
