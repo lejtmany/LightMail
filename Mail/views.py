@@ -1,13 +1,11 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from django.views.generic.edit import CreateView
 from .models import Email, Contact
-from django import template
 from .forms import EmailForm
-from django.utils import timezone
 from django.core.urlresolvers import reverse
 import datetime
+from django.core import mail
 
 my_email = 'myemail@gmail.com'
 
@@ -21,7 +19,7 @@ def IndexView(request):
     return render(request, 'Mail/index.html')
 
 
-def send_email(request):
+def send_email(request, email_id = None):
     if request.method == 'POST':
         form = EmailForm(request.POST)
         if (form.is_valid()):
@@ -29,10 +27,12 @@ def send_email(request):
             email.date = datetime.datetime.now()
             email.sender = my_email
             email.is_deleted = False
+            mail.send_mail(email.subject, email.content, email.sender, [email.receiver,])
             form.save()
             return HttpResponseRedirect(reverse('mail:index'))
     else:
-        form = EmailForm()
+        respond_to = get_object_or_404(Email, pk=email_id).sender
+        form = EmailForm(initial={'receiver':respond_to})
         return render(request, 'Mail/send_email.html', {'form': form})
 
 
