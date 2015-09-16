@@ -1,5 +1,8 @@
+{% extends 'Mail/base.html' %}
+{% block main_content %}
 <h1>Send Email</h1>
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Create" />
+<form action="{% url 'mail:send_email' %}" method="post">{% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Send">
 </form>
+{% endblock %}

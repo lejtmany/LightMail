@@ -7,8 +7,9 @@ class Contact(models.Model):
     dob = models.DateField()
 
 class Email(models.Model):
-    date_received = models.DateTimeField()
+    date = models.DateTimeField()
     sender = models.CharField(max_length=50)
+    receiver = models.CharField(max_length=50)
     subject = models.CharField(max_length=255)
     content = models.TextField()
     is_deleted = models.BooleanField()

@@ -9,7 +9,7 @@ register = template.Library()
 
 @register.inclusion_tag('Mail/emails_list.html')
 def emails_list():
-    emails = Email.objects.all()
+    emails = Email.objects.exclude(sender='myemail@gmail.com')
     return {'emails':emails}
 
 @register.inclusion_tag('Mail/contacts_list.html')

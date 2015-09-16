@@ -1,7 +1,6 @@
 {% extends 'Mail/base.html' %}
 {% load mail_extras %}
     {% block left_bar %}
-        {% contacts_list %}
     {% endblock %}
     {% block main_content %}
         <a type="button" class="btn btn-primary" href="{% url 'mail:send_email'%}">Send Email</a>

@@ -1,3 +1,5 @@
+{% extends 'Mail/base.html' %}
+{% block main_content %}
 <h3>Contacts</h3>
 <ul class="list-group">
     {% for contact in contacts %}
@@ -7,3 +9,4 @@
     </li>
     {% endfor %}
 </ul>
+{% endblock %}

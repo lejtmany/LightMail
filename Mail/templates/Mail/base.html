@@ -18,8 +18,9 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav nav-pills navbar-left" role="tablist">
-                <li><a href="#" class="active">Inbox</a></li>
-                <li><a href="#">Contacts</a></li>
+                <li><a href="{% url 'mail:index' %}" class="active">Inbox</a></li>
+                <li><a href="{% url 'mail:sent_emails' %}">Sent</a></li>
+                <li><a href="{% url 'mail:contacts' %}">Contacts</a></li>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
@@ -33,11 +34,11 @@
         </div>
     </nav>
     <div class="row">
-        <div class="col-md-3" id="left-nav-bar">
-            {% block left_bar %}
-            {% endblock %}
-        </div>
-        <div class="col-md-9" id="main-content">
+        <!--<div class="col-md-3" id="left-nav-bar">-->
+        <!--{% block left_bar %}-->
+        <!--{% endblock %}-->
+        <!--</div>-->
+        <div id="main-content">
             {% block main_content%}
             {% endblock %}
         </div>
