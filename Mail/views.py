@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views import generic
 from .models import Email, Contact
-from .forms import EmailForm
+from .forms import EmailForm, ContactForm
 from django.core.urlresolvers import reverse
 import datetime
 from django.core import mail
@@ -23,18 +23,29 @@ def send_email(request, email_id = None):
     if request.method == 'POST':
         form = EmailForm(request.POST)
         if (form.is_valid()):
-            email = form.save(commit=False)
-            email.date = datetime.datetime.now()
-            email.sender = my_email
-            email.is_deleted = False
-            mail.send_mail(email.subject, email.content, email.sender, [email.receiver,])
-            form.save()
+            save_email_to_db(form)
             return HttpResponseRedirect(reverse('mail:index'))
     else:
-        respond_to = get_object_or_404(Email, pk=email_id).sender
-        form = EmailForm(initial={'receiver':respond_to})
+        try:
+            respond_to = Email.objects.get(pk=email_id).sender
+            form = EmailForm(initial={'receiver':respond_to})
+        except Email.DoesNotExist:
+            form = EmailForm()
         return render(request, 'Mail/send_email.html', {'form': form})
 
+
+def save_email_to_db(form):
+    email = form.save(commit=False)
+    email.date = datetime.datetime.now()
+    email.sender = my_email
+    email.is_deleted = False
+    mail.send_mail(email.subject, email.content, email.sender, [email.receiver, ])
+    form.save()
+
+
+def add_contact(request):
+    form = ContactForm()
+    return render(request, 'Mail/add_contact.html', {'form': form})
 
 class contacts_list(generic.ListView):
     template_name = 'Mail/contacts_list.html'

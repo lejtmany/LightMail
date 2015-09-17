@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'Mail/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Mail/css/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Mail/css/font-awesome-4.4.0/css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'Mail/css/styles.css' %}" rel="stylesheet">
     <title>
         LightMail
@@ -14,7 +16,7 @@
 <div class="container">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="navar-header">
-            <a class="navbar-brand  glyphicon-envelope" href="#">LightMail</a>
+            <a class="navbar-brand" href="#"><i class="fa fa-envelope"></i>LightMail</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav nav-pills navbar-left" role="tablist">
@@ -48,5 +50,18 @@
 
 <script src="{% static 'Mail/scripts/jquery.min.js' %}"></script>
 <script src="{% static 'Mail/scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'Mail/scripts/jquery-ui.min.js' %}"></script>
 </body>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+  });
+
+</script>
 </html>

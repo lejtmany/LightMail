@@ -1,6 +1,7 @@
 {% extends 'Mail/base.html' %}
 {% block main_content %}
 <h3>Contacts</h3>
+<a type="button" class="btn btn-primary" href="{% url 'mail:add_contact' %}"><i class="fa fa-user-plus"></i> Add Contacts</a><br/>
 <ul class="list-group">
     {% for contact in contacts %}
     <li class="list-group-item">

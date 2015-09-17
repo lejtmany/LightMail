@@ -1,6 +1,6 @@
 {% extends 'Mail/base.html'%}
 {%block main_content %}
-<a type="button" class="btn btn-primary" href="{% url 'mail:send_email' email.id %}">Respond</a><br/>
+<a type="button" class="btn btn-primary" href="{% url 'mail:send_email' email.id %}">Reply  <i class="fa fa-align-right fa-reply"></i></a><br/>
 Sender: {{ email.sender }} </br>
 Subject: {{email.subject }}</br>
 Date: {{ email.date }}</br>

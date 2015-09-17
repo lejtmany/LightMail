@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^send_email/(?P<email_id>[0-9]+)/$', views.send_email, name='send_email'),
     url(r'^sent_emails$', views.sent_emails.as_view(), name='sent_emails'),
     url(r'^contacts$', views.contacts_list.as_view(), name='contacts'),
+    url(r'^add_contact$', views.add_contact, name='add_contact'),
 ]

@@ -3,6 +3,6 @@
 <h1>Send Email</h1>
 <form action="{% url 'mail:send_email' %}" method="post">{% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="Send">
+    <input type="submit" value="Send"><i class="fa fa-paper-plane"></i>
 </form>
 {% endblock %}

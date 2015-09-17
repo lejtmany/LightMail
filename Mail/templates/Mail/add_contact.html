@@ -1,0 +1,7 @@
+{% extends 'Mail/base.html' %}
+{% block main_content %}
+<form action="{% url 'mail:add_contact' %}" method="post">{% csrf_token %}
+    {% load crispy_forms_tags %}
+    {% crispy form %}
+</form>
+{% endblock %}
