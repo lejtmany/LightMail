@@ -19,7 +19,7 @@ def IndexView(request):
     return render(request, 'Mail/index.html')
 
 
-def send_email(request, email_id = None):
+def compose_email(request, email_id = None):
     if request.method == 'POST':
         form = EmailForm(request.POST)
         if (form.is_valid()):
@@ -31,7 +31,7 @@ def send_email(request, email_id = None):
             form = EmailForm(initial={'receiver':respond_to})
         except Email.DoesNotExist:
             form = EmailForm()
-        return render(request, 'Mail/send_email.html', {'form': form})
+        return render(request, 'Mail/compose_email.html', {'form': form})
 
 
 def save_email_to_db(form):
@@ -44,8 +44,14 @@ def save_email_to_db(form):
 
 
 def add_contact(request):
-    form = ContactForm()
-    return render(request, 'Mail/add_contact.html', {'form': form})
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if (form.is_valid()):
+            form.save()
+            return HttpResponseRedirect(reverse('mail:contacts'))
+    else:
+        form = ContactForm()
+        return render(request, 'Mail/add_contact.html', {'form': form})
 
 class contacts_list(generic.ListView):
     template_name = 'Mail/contacts_list.html'
@@ -61,3 +67,7 @@ class sent_emails(generic.ListView):
 
     def get_queryset(self):
         return Email.objects.filter(sender=my_email)
+
+class contact_details(generic.DetailView):
+    model=Contact
+    template_name = 'Mail/contact_details.html'

@@ -3,6 +3,6 @@
     {% block left_bar %}
     {% endblock %}
     {% block main_content %}
-        <a type="button" class="btn btn-primary" href="{% url 'mail:send_email'%}"><i class="fa fa-pencil"></i>   Compose Email</a>
+        <a type="button" class="btn btn-primary" href="{% url 'mail:compose_email'%}"><i class="fa fa-pencil"></i>   Compose Email</a>
         {% emails_list %}
     {% endblock %}

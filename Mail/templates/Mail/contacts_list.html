@@ -5,8 +5,10 @@
 <ul class="list-group">
     {% for contact in contacts %}
     <li class="list-group-item">
-        {{ contact.first_name }} {{contact.last_name }}<br>
-        {{ contact.email }}
+        <a href="{% url 'mail:contact_details' contact.id %}">
+            {{ contact.first_name }} {{contact.last_name }}<br>
+            {{ contact.email }}
+        </a>
     </li>
     {% endfor %}
 </ul>
