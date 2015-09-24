@@ -17,7 +17,11 @@ class email_detail(generic.DetailView):
 
 
 def IndexView(request):
-    return render(request, 'Mail/index.html')
+     emails = Email.objects.exclude(sender='myemail@gmail.com')
+     searchParams = request.GET.get('searchParams')
+     if searchParams is not None:
+         emails = emails.filter(content__icontains=searchParams) | emails.filter(subject__icontains=searchParams) | emails.filter(sender__icontains=searchParams)
+     return render(request, 'Mail/index.html', {'emails':emails, 'searchParams':searchParams})
 
 
 def compose_email(request, email_id = None):
@@ -57,6 +61,11 @@ def add_contact(request):
 class contacts_list(generic.ListView):
     template_name = 'Mail/contacts_list.html'
     context_object_name = 'contacts'
+
+    def get_context_data(self, **kwargs):
+        context = super(contacts_list, self).get_context_data(**kwargs)
+        context['searchParams'] = self.request.GET.get('searchParams')
+        return context
 
     def get_queryset(self):
         searchParams = self.request.GET.get('searchParams')

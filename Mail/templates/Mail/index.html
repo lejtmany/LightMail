@@ -1,8 +1,26 @@
 {% extends 'Mail/base.html' %}
-{% load mail_extras %}
-    {% block left_bar %}
-    {% endblock %}
-    {% block main_content %}
-        <a type="button" class="btn btn-primary" href="{% url 'mail:compose_email'%}"><i class="fa fa-pencil"></i>   Compose Email</a>
-        {% emails_list %}
-    {% endblock %}
+{% block left_bar %}
+{% endblock %}
+{% block main_content %}
+    <form method="get">
+        <div class="input-group">
+            <input name="searchParams" type="text" placeholder="Search Inbox..." class="form-control" value="{{searchParams|default_if_none:''}}">
+        <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-search"></i>
+        </button>
+        </span>
+        </div>
+    </form><br />
+    <h1>Inbox</h1>
+    <a type="button" class="btn btn-primary" href="{% url 'mail:compose_email'%}"><i class="fa fa-pencil"></i> Compose Email</a>
+    <ul class="list-group">
+        {% for email in emails %}
+        <li class="list-group-item">
+            <a href="{% url 'mail:email_detail' email.id %}">
+                {{email.sender}} <b>{{email.subject}}</b> -- {{email.content |truncatechars:15 }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
