@@ -1,12 +1,23 @@
 {% extends 'Mail/base.html' %}
 {% block main_content %}
 <h3>Send Email</h3>
+
+
 <form action="{% url 'mail:compose_email' %}" method="post" class="form-horizontal">{% csrf_token %}
-    {% load crispy_forms_tags %}
-    {% crispy form %}
-    <button type="submit" class="btn btn-primary">
-        <i class="fa fa-paper-plane"></i>
-        Send
-    </button>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <button type="submit" class="btn btn-info">
+                <i class="fa fa-paper-plane"></i>
+                Send
+            </button>
+            <a href="{%url 'mail:index' %}" type="button" class="btn btn-info">
+                <i class="fa fa-trash"></i> Discardgit
+            </a>
+        </div>
+        <div class="panel-body">
+            {% load crispy_forms_tags %}
+            {% crispy form %}
+        </div>
+    </div>
 </form>
 {% endblock %}

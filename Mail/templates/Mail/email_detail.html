@@ -1,8 +1,22 @@
 {% extends 'Mail/base.html'%}
 {%block main_content %}
-<a type="button" class="btn btn-primary" href="{% url 'mail:compose_email' email.id %}">Reply  <i class="fa fa-align-right fa-reply"></i></a><br/>
-    Sender: {{ email.sender }} </br>
-    Subject: {{email.subject }}</br>
-    Date: {{ email.date }}</br>
-    Content: {{email.content }}</br>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <a type="button" class="btn btn-info" href="{% url 'mail:compose_email' email.id %}">Reply <i
+                class="fa fa-align-right fa-reply"></i></a><br/>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item"><b>Sender:</b> {{ email.sender }}</li>
+            <li class="list-group-item"><b>Subject:</b> {{email.subject }}</li>
+            <li class="list-group-item"><b>Date:</b> {{ email.date }}</li>
+            <li class="list-group-item">
+                <div class="panel">
+                    <div class="panel-body">{{email.content}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
 {% endblock %}
