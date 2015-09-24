@@ -1,7 +1,7 @@
 {% extends 'Mail/base.html' %}
 {% block main_content %}
 <h3>Send Email</h3>
-<form action="{% url 'mail:compose_email' %}" method="post">{% csrf_token %}
+<form action="{% url 'mail:compose_email' %}" method="post" class="form-horizontal">{% csrf_token %}
     {% load crispy_forms_tags %}
     {% crispy form %}
     <button type="submit" class="btn btn-primary">

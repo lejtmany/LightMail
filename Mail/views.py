@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import generic
+from pip.commands import search
 from .models import Email, Contact
 from .forms import EmailForm, ContactForm
 from django.core.urlresolvers import reverse
@@ -58,7 +59,11 @@ class contacts_list(generic.ListView):
     context_object_name = 'contacts'
 
     def get_queryset(self):
-        return Contact.objects.all()
+        searchParams = self.request.GET.get('searchParams')
+        if searchParams is None:
+            return Contact.objects.all()
+        else:
+            return Contact.objects.filter(first_name__icontains=searchParams) | Contact.objects.filter(last_name__icontains=searchParams) | Contact.objects.filter(email__icontains=searchParams)
 
 
 class sent_emails(generic.ListView):

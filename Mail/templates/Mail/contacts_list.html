@@ -1,7 +1,18 @@
 {% extends 'Mail/base.html' %}
 {% block main_content %}
+<form method="get">
+    <div class="input-group">
+        <input name="searchParams" type="text" placeholder="Search by Name or Email..." class="form-control">
+    <span class="input-group-btn">
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-search"></i>
+    </button>
+    </span>
+    </div>
+</form>
 <h3>Contacts</h3>
-<a type="button" class="btn btn-primary" href="{% url 'mail:add_contact' %}"><i class="fa fa-user-plus"></i> Add Contacts</a><br/>
+<a type="button" class="btn btn-primary" href="{% url 'mail:add_contact' %}"><i class="fa fa-user-plus"></i> Add Contact</a>
+<br/>
 <ul class="list-group">
     {% for contact in contacts %}
     <li class="list-group-item">
