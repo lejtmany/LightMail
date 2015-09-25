@@ -96,7 +96,7 @@ def get_contacts(request):
         name_values = {}
         name_values['id'] = contact.id
         name_values['label'] = full_name
-        name_values['value'] = full_name
+        name_values['value'] = contact.email
         names.append(name_values)
     data = json.dumps(names)
     return HttpResponse(data, 'application/json')
