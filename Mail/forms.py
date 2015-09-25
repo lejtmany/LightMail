@@ -21,7 +21,7 @@ class EmailForm(forms.ModelForm):
         self.helper.field_class = 'col-lg-8'
         self.helper.layout = Layout(
             Div(
-                Field('receiver', id='receiver_auto_complete'), id='ui-widget'
+                Field('receiver', id='contacts_auto_complete'), id='ui-widget'
             ))
 
 
