@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{% static 'Mail/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'Mail/css/jquery-ui.min.css' %}" rel="stylesheet">
-    <link href="{% static 'Mail/css/font-awesome-4.4.0/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bower_components/jquery-ui/themes/base/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'Mail/css/styles.css' %}" rel="stylesheet">
+    <!--<link href="{%static 'bower_components/flat-ui/dist/css/flat-ui.min.css'%}" rel="stylesheet">-->
+    <link href="{%static 'bower_components/flat-ui/dist/css/my-flat-ui.min.css'%}" rel="stylesheet">
     <title>
         LightMail
     </title>
@@ -42,9 +44,9 @@
 
 </div>
 
-<script src="{% static 'Mail/scripts/jquery.min.js' %}"></script>
-<script src="{% static 'Mail/scripts/bootstrap.min.js' %}"></script>
-<script src="{% static 'Mail/scripts/jquery-ui.min.js' %}"></script>
+<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
 </body>
 <script>
   $(function() {
@@ -55,6 +57,10 @@
       // You can put more options here.
 
     });
+    $("#receiver_auto_complete").autocomplete({
+    source: "api/get_contacts/",
+    minLength: 2,
+  });
   });
 
 </script>
