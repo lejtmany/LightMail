@@ -1,16 +1,17 @@
 from crispy_forms.bootstrap import StrictButton
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout
+from crispy_forms.layout import Submit, Layout, Field, MultiField, Div
 
 __author__ = 'lejtman'
 
 from django import forms
 from .models import Email, Contact
 
+
 class EmailForm(forms.ModelForm):
     class Meta:
         model = Email
-        fields = ['receiver', 'subject' ,'content']
+        fields = ['receiver', 'subject', 'content']
 
     def __init__(self, *args, **kwargs):
         super(EmailForm, self).__init__(*args, **kwargs)
@@ -18,13 +19,18 @@ class EmailForm(forms.ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-8'
+        self.helper.layout = Layout(
+            Div(
+                Field('receiver', id='receiver_auto_complete'), id='ui-widget'
+            ))
+
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['first_name', 'last_name', 'email', 'dob']
         widgets = {
-            'dob': forms.DateInput(attrs={'class':'datepicker'}),
+            'dob': forms.DateInput(attrs={'class': 'datepicker'}),
         }
 
     def __init__(self, *args, **kwargs):

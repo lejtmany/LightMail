@@ -1,6 +1,11 @@
 {% extends 'Mail/base.html'%}
 {% block main_content %}
-    Name: {{contact.first_name}} {{contact.last_name}}<br/>
-    Email: {{contact.email}}<br/>
-    Birthday: {{contact.dob}}<br/>
+<div class="page-header">
+    <h2>{{contact.first_name}} {{contact.last_name}}</h2>
+</div>
+<ul class="list-group">
+    <li class="list-group-item"><strong>Email:</strong>    {{contact.email}}</li>
+    <li class="list-group-item"> <strong>Birthday:</strong>    {{contact.dob}}</li>
+</ul>
+<br/>
 {% endblock %}

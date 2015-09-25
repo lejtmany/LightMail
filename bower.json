@@ -1,0 +1,10 @@
+{
+  "name": "LightMail",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "flat-ui": "~2.2.2",
+    "font-awesome": "~4.4.0",
+    "jquery-ui": "~1.11.4"
+  }
+}

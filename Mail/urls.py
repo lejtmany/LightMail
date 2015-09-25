@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^contacts$', views.contacts_list.as_view(), name='contacts'),
     url(r'^add_contact$', views.add_contact, name='add_contact'),
     url(r'^contact_details/(?P<pk>[0-9]+)/$', views.contact_details.as_view(), name='contact_details'),
+    url(r'^api/get_contacts/$', views.get_contacts, name='get_contacts')
 ]

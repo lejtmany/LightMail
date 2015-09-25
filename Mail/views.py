@@ -1,4 +1,5 @@
-from django.http import HttpResponseRedirect
+import json
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views import generic
 from pip.commands import search
@@ -85,3 +86,17 @@ class sent_emails(generic.ListView):
 class contact_details(generic.DetailView):
     model=Contact
     template_name = 'Mail/contact_details.html'
+
+def get_contacts(request):
+    searchParams = request.GET.get('term','')
+    contacts = Contact.objects.filter(first_name__icontains=searchParams) | Contact.objects.filter(last_name__icontains=searchParams) | Contact.objects.filter(email__icontains=searchParams)
+    names = []
+    for contact in contacts:
+        full_name = contact.first_name + " " + contact.last_name
+        name_values = {}
+        name_values['id'] = contact.id
+        name_values['label'] = full_name
+        name_values['value'] = full_name
+        names.append(name_values)
+    data = json.dumps(names)
+    return HttpResponse(data, 'application/json')
