@@ -19,6 +19,7 @@ class EmailForm(forms.ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-8'
+        self.fields['receiver'].label = "To"
         self.helper.layout = Layout(
             Div(
                 Field('receiver', id='contacts_auto_complete'), id='ui-widget'
