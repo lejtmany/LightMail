@@ -1,2 +1,3 @@
 Mail/static/bower_components
 node_modules
+LightMail/settings_local.py
