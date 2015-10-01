@@ -1,6 +1,6 @@
 from crispy_forms.bootstrap import StrictButton
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Field, MultiField, Div
+from crispy_forms.layout import Submit, Layout, Field, MultiField, Div, Fieldset
 
 __author__ = 'lejtman'
 
@@ -23,7 +23,9 @@ class EmailForm(forms.ModelForm):
         self.helper.layout = Layout(
             Div(
                 Field('receiver', id='contacts_auto_complete'), id='ui-widget'
-            ))
+            ),
+            Fieldset('', 'subject', 'content')
+        )
 
 
 class ContactForm(forms.ModelForm):
@@ -46,16 +48,14 @@ class ContactForm(forms.ModelForm):
         helper.form_class = 'form-horizontal'
         helper.label_class = 'col-lg-2'
         helper.field_class = 'col-lg-8'
-        if(self.add_submit):
+        if (self.add_submit):
             helper.add_input(Submit('submit', submit_button_txt))
         return helper
-
 
 
 class AddContactForm(ContactForm):
     submit_button_txt = 'Add Contact'
 
+
 class UpdateContactForm(ContactForm):
     add_submit = False
-
-

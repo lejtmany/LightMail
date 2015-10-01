@@ -9,8 +9,8 @@ body{
   border-right: 1px solid #F2F7F9;
 }
 
-.fixed-panel {
-          min-height: 10;
-          max-height: 10;
+.scroll-panel {
+          min-height: 350px;
+          max-height: 350px;
           overflow-y: scroll;
 }

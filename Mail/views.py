@@ -97,6 +97,7 @@ class contact_details(generic.DetailView):
 
 #get contacts for auto-complete
 def get_contacts(request):
+    # pdb.set_trace()
     searchParams = request.GET.get('term','')
     contacts = Contact.objects.filter(first_name__icontains=searchParams) | Contact.objects.filter(last_name__icontains=searchParams) | Contact.objects.filter(email__icontains=searchParams)
     names = []
