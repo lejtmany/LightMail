@@ -4,5 +4,6 @@
 <form action="{% url 'mail:add_contact' %}" method="post" class="form-horizontal">{% csrf_token %}
     {% load crispy_forms_tags %}
     {% crispy form %}
+    <!--<button type="submit" class="btn btn-info">Add Contact</button>-->
 </form>
 {% endblock %}

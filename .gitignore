@@ -9,7 +9,7 @@ dist/
 bin
 develop-eggs
 dist
-downloads
+downloadsgit
 eggs
 parts
 src/*.egg-info

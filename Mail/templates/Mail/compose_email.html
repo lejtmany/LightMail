@@ -1,6 +1,6 @@
 {% extends 'Mail/base.html' %}
 {% block main_content %}
-<h3>Send Email</h3>
+<h3>Compose Email</h3>
 
 
 <form action="{% url 'mail:compose_email' %}" method="post" class="form-horizontal">{% csrf_token %}
@@ -10,7 +10,7 @@
                 <i class="fa fa-paper-plane fa-lg"></i>
                 Send
             </button>
-            <a href="{%url 'mail:index' %}" type="button" class="btn btn-info">
+            <a href="{%url 'mail:index' %}" type="button" class="btn btn-danger" style="float:right">
                 <i class="fa fa-trash fa-lg"></i> Discard
             </a>
         </div>

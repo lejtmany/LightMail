@@ -8,3 +8,9 @@ body{
 .divided-column {
   border-right: 1px solid #F2F7F9;
 }
+
+.fixed-panel {
+          min-height: 10;
+          max-height: 10;
+          overflow-y: scroll;
+}

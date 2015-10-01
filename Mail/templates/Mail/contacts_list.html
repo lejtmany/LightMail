@@ -23,7 +23,7 @@
         <a type="button" class="btn btn-info" href="{% url 'mail:add_contact' %}"><i class="fa fa-user-plus"></i> Add
             Contact</a>
     </div>
-    <div class="panel-body">
+    <div class="panel-body fixed-panel">
         <div class="list-group">
             {% for contact in contacts %}
             <a type="button" href="{% url 'mail:contact_details' contact.id %}" class="list-group-item">

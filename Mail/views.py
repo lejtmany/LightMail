@@ -3,12 +3,12 @@ from django.db.models.functions import Lower
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views import generic
-from pip.commands import search
 from .models import Email, Contact
-from .forms import EmailForm, ContactForm
-from django.core.urlresolvers import reverse
+from .forms import EmailForm, ContactForm, AddContactForm, UpdateContactForm
+from django.core.urlresolvers import reverse, reverse_lazy
 import datetime
 from django.core import mail
+import pdb
 
 my_email = 'myemail@gmail.com'
 
@@ -57,13 +57,14 @@ def save_email_to_db(form):
 
 
 def add_contact(request):
+    # pdb.set_trace()
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = AddContactForm(request.POST)
         if (form.is_valid()):
             form.save()
             return HttpResponseRedirect(reverse('mail:contacts'))
     else:
-        form = ContactForm()
+        form = AddContactForm()
         return render(request, 'Mail/add_contact.html', {'form': form})
 
 class contacts_list(generic.ListView):
@@ -108,3 +109,15 @@ def get_contacts(request):
         names.append(name_values)
     data = json.dumps(names)
     return HttpResponse(data, 'application/json')
+
+def delete_contact(request, contact_id):
+    Contact.objects.get(id=contact_id).delete()
+    return HttpResponseRedirect(reverse('mail:contacts'))
+
+class contact_update(generic.UpdateView):
+    model = Contact
+    # fields = ['first_name', 'last_name', 'email', 'dob']
+    template_name_suffix = '_update_form'
+    form_class = UpdateContactForm
+    success_url = reverse_lazy('mail:contacts')
+

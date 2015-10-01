@@ -8,10 +8,10 @@
         <a href="{% url 'mail:compose_email'%}?compose_to={{contact.email}}" type="button" class="btn btn-info">
             <i class="fa fa-paper-plane fa-lg"></i> Email
         </a>
-        <a href="" type="button" class="btn btn-info">
+        <a href="{% url 'mail:contact_update' contact.id %}" type="button" class="btn btn-info">
             <i class="fa fa-pencil-square fa-lg"></i> Edit
         </a>
-        <a href="" type="button" class="btn btn-danger" style="float:right">
+        <a href="{% url 'mail:delete_contact' contact.id %}" type="button" class="btn btn-danger" style="float:right">
             <i class="fa fa-trash fa-lg"></i> Delete
         </a>
     </div>

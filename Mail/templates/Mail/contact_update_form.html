@@ -1,0 +1,15 @@
+{% extends 'Mail/base.html' %}
+{% block main_content %}
+<form action="" method="post" class="form-horizontal">{% csrf_token %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <button type="submit" class="btn btn-info"><i class="fa fa-check-square fa-lg"></i>  Update Contact</button>
+            <a type="button" class="btn btn-info" style="float:right" href="{% url 'mail:contacts' %}"><i class="fa fa-trash fa-lg"></i>  Discard Changes</a>
+        </div>
+        <div class="panel-body">
+            {% load crispy_forms_tags %}
+            {% crispy form %}
+        </div>
+    </div>
+</form>
+{% endblock %}
