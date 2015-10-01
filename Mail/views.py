@@ -1,4 +1,5 @@
 import json
+from django.db.models.functions import Lower
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views import generic
@@ -31,7 +32,7 @@ def IndexView(request):
      return render(request, 'Mail/index.html', {'emails':emails, 'searchParams':searchParams})
 
 
-def compose_email(request, email_id = None):
+def compose_email(request):
     if request.method == 'POST':
         form = EmailForm(request.POST)
         if (form.is_valid()):
@@ -39,7 +40,7 @@ def compose_email(request, email_id = None):
             return HttpResponseRedirect(reverse('mail:index'))
     else:
         try:
-            respond_to = Email.objects.get(pk=email_id).sender
+            respond_to = request.GET.get('compose_to')
             form = EmailForm(initial={'receiver':respond_to})
         except Email.DoesNotExist:
             form = EmailForm()
@@ -77,9 +78,9 @@ class contacts_list(generic.ListView):
     def get_queryset(self):
         searchParams = self.request.GET.get('searchParams')
         if searchParams is None:
-            return Contact.objects.all()
+            return Contact.objects.all().order_by(Lower('last_name'))
         else:
-            return Contact.objects.filter(first_name__icontains=searchParams) | Contact.objects.filter(last_name__icontains=searchParams) | Contact.objects.filter(email__icontains=searchParams)
+            return Contact.objects.filter(first_name__icontains=searchParams) | Contact.objects.filter(last_name__icontains=searchParams) | Contact.objects.filter(email__icontains=searchParams).order_by(Lower('last_name'))
 
 
 class sent_emails(generic.ListView):
@@ -93,6 +94,7 @@ class contact_details(generic.DetailView):
     model=Contact
     template_name = 'Mail/contact_details.html'
 
+#get contacts for auto-complete
 def get_contacts(request):
     searchParams = request.GET.get('term','')
     contacts = Contact.objects.filter(first_name__icontains=searchParams) | Contact.objects.filter(last_name__icontains=searchParams) | Contact.objects.filter(email__icontains=searchParams)

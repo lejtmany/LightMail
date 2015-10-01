@@ -2,7 +2,7 @@
 {%block main_content %}
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <a type="button" class="btn btn-info" href="{% url 'mail:compose_email' email.id %}">Reply <i
+        <a type="button" class="btn btn-info" href="{% url 'mail:compose_email'%}?compose_to={{email.sender}}">Reply <i
                 class="fa fa-align-right fa-reply"></i></a><br/>
     </div>
     <div class="panel-body">

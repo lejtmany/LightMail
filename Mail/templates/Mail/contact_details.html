@@ -5,7 +5,7 @@
 </div>
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <a href="" type="button" class="btn btn-info">
+        <a href="{% url 'mail:compose_email'%}?compose_to={{contact.email}}" type="button" class="btn btn-info">
             <i class="fa fa-paper-plane fa-lg"></i> Email
         </a>
         <a href="" type="button" class="btn btn-info">
