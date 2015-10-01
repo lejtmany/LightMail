@@ -13,6 +13,7 @@ class Email(models.Model):
     subject = models.CharField(max_length=255)
     content = models.TextField()
     is_deleted = models.BooleanField()
+    is_read = models.BooleanField()
 
 
 

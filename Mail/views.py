@@ -16,6 +16,12 @@ class email_detail(generic.DetailView):
     model = Email
     template_name = 'Mail/email_detail.html'
 
+    def get_object(self):
+        object = super(email_detail, self).get_object()
+        object.is_read = True
+        object.save()
+        return object
+
 
 def IndexView(request):
      emails = Email.objects.exclude(sender='myemail@gmail.com')

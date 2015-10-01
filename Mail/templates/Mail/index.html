@@ -26,9 +26,20 @@
     <div class="panel-body">
         <ul class="list-group">
             {% for email in emails %}
-                <a href="{% url 'mail:email_detail' email.id %}" type="button" class="list-group-item">
-                    {{email.sender}} <b>{{email.subject}}</b> -- {{email.content |truncatechars:15 }}
-                </a>
+            <a href="{% url 'mail:email_detail' email.id %}" type="button" class="list-group-item">
+                <div class="row" style="{% if not email.is_read %}font-weight:bold{% endif %}">
+                    <div class="col-md-2 divided-column">
+                        {{email.date | date:"b j,  P"}}
+                    </div>
+                    <div class="col-md-4 divided-column">
+                        {{email.sender}}
+                    </div>
+                    <div class="col-md-6">
+                        {{email.subject}}
+                    </div>
+                      <!--{{email.content |truncatechars:15 }}-->
+                </div>
+            </a>
             {% endfor %}
         </ul>
     </div>

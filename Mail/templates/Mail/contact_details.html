@@ -3,9 +3,24 @@
 <div class="page-header">
     <h2>{{contact.first_name}} {{contact.last_name}}</h2>
 </div>
-<ul class="list-group">
-    <li class="list-group-item"><strong>Email:</strong>    {{contact.email}}</li>
-    <li class="list-group-item"> <strong>Birthday:</strong>    {{contact.dob}}</li>
-</ul>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <a href="" type="button" class="btn btn-info">
+            <i class="fa fa-paper-plane fa-lg"></i> Email
+        </a>
+        <a href="" type="button" class="btn btn-info">
+            <i class="fa fa-pencil-square fa-lg"></i> Edit
+        </a>
+        <a href="" type="button" class="btn btn-danger" style="float:right">
+            <i class="fa fa-trash fa-lg"></i> Delete
+        </a>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Email:</strong> {{contact.email}}</li>
+            <li class="list-group-item"><strong>Birthday:</strong> {{contact.dob}}</li>
+        </ul>
+    </div>
+</div>
 <br/>
 {% endblock %}

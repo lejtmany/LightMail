@@ -4,3 +4,7 @@ body{
 .asteriskField {
     display: none;
 }
+
+.divided-column {
+  border-right: 1px solid #F2F7F9;
+}
