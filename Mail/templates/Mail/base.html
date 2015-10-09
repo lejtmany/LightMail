@@ -18,11 +18,11 @@
 <div class="container">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="navar-header">
-            <a class="navbar-brand" href="{% url 'mail:index' %}"><i class="fa fa-envelope"></i>LightMail</a>
+            <a class="navbar-brand" href="{% url 'mail:inbox' %}"><i class="fa fa-envelope"></i>LightMail</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav nav-pills navbar-left" role="tablist">
-                <li><a href="{% url 'mail:index' %}" class="active">Inbox</a></li>
+                <li><a href="{% url 'mail:inbox' %}" class="active">Inbox</a></li>
                 <li><a href="{% url 'mail:sent_emails' %}">Sent</a></li>
                 <li><a href="{% url 'mail:contacts' %}">Contacts</a></li>
             </ul>

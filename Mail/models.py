@@ -7,6 +7,9 @@ class Contact(models.Model):
     dob = models.DateField()
 
 class Email(models.Model):
+    class Meta():
+        ordering= ['date']
+
     date = models.DateTimeField()
     sender = models.CharField(max_length=50)
     receiver = models.CharField(max_length=50)
@@ -15,5 +18,7 @@ class Email(models.Model):
     is_deleted = models.BooleanField()
     is_read = models.BooleanField()
 
+    def __str__(self):
+        return '<Email: object_pk {}>'.format(self.pk)
 
 

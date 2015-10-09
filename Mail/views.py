@@ -24,20 +24,22 @@ class email_detail(generic.DetailView):
         return object
 
 
-def IndexView(request):
-     emails = Email.objects.exclude(sender='myemail@gmail.com')
+def inbox(request):
+     emails = get_emails_for_inbox()
      searchParams = request.GET.get('searchParams')
      if searchParams is not None:
          emails = emails.filter(content__icontains=searchParams) | emails.filter(subject__icontains=searchParams) | emails.filter(sender__icontains=searchParams)
-     return render(request, 'Mail/index.html', {'emails':emails, 'searchParams':searchParams})
+     return render(request, 'Mail/inbox.html', {'emails':emails, 'searchParams':searchParams})
 
+def get_emails_for_inbox():
+    return Email.objects.exclude(sender=my_email) & Email.objects.exclude(is_deleted = True)
 
 def compose_email(request):
     if request.method == 'POST':
         form = EmailForm(request.POST)
         if (form.is_valid()):
             save_email_to_db(form)
-            return HttpResponseRedirect(reverse('mail:index'))
+            return HttpResponseRedirect(reverse('mail:inbox'))
     else:
         try:
             respond_to = request.GET.get('compose_to')

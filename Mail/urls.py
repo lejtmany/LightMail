@@ -4,7 +4,7 @@ from . import views
 from django.conf.urls import url
 
 urlpatterns = [
-    url(r'^$', views.IndexView, name='index'),
+    url(r'^$', views.inbox, name='inbox'),
     url(r'^(?P<pk>[0-9]+)/$', views.email_detail.as_view(), name='email_detail'),
     url(r'^compose_email$', views.compose_email, name='compose_email'),
     url(r'^compose_email/$', views.compose_email, name='compose_email'),
